@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Surfaces & Neutrals (design.md Section 2 & 3) */
+  --color-void-canvas: #000000;
+  --color-midnight-ink: #0c0a10;
+  --color-obsidian-surface: #111111;
+  --color-carbon: #191919;
+  --color-carbon-layer: #141716;
+  --color-graphite-panel: #21222b;
+  --color-graphite: #414042;
+  --color-ash-border: #272626;
+  --color-smoke: #2c2c2c;
+  --color-smoke-divider: #424242;
+  --color-steel: #58595b;
+  --color-slate: #6d6e71;
+  --color-steel-text: #918d8d;
+  --color-fog-text: #a3a3a3;
+  --color-ash: #d1d3d4;
+  --color-bone-text: #edecee;
+  --color-pure-light: #ffffff;
+
+  /* Natural Purple Brand Accents sampled from bg.png gradient */
+  --color-bg-deep-purple: #261f37;
+  --color-bg-plum: #33284d;
+  --color-voltage-purple: #5c478a;
+  --color-signal-violet: #8870b6;
+  --color-plasma-violet: #a892c4;
+  --color-soft-lilac: #c8b4cb;
+  --color-bg-warm-gold: #e8dda8;
+
+  /* Gradients */
+  --gradient-bg-purple: linear-gradient(
+    135deg,
+    #0c0813 0%,
+    #261f37 28%,
+    #594485 68%,
+    #8870b6 100%
+  );
+  --gradient-hero-cloud: radial-gradient(
+    62% 54% at 50% 48%,
+    rgba(136, 112, 182, 0.34) 0%,
+    rgba(89, 68, 133, 0.24) 45%,
+    rgba(38, 31, 55, 0.12) 72%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  /* Elevation & Hairlines */
+  --shadow-hairline: 0 0 0 1px #272626;
+  --shadow-nav-pill: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --shadow-console-glow: 0 0 40px rgba(119, 96, 162, 0.24);
+  --shadow-card-halo: 0 0 32px rgba(136, 112, 182, 0.2);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+  --font-annotation: var(--font-caveat), cursive;
+}
+
+body {
+  background-color: var(--color-void-canvas);
+  color: var(--color-bone-text);
+  font-family: var(--font-sans);
+  letter-spacing: 0.004em;
+}
+
+/* Display & Headline Typography utilities per design.md Section 4 */
+.text-display-block {
+  font-weight: 500;
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+}
+
+.text-heading-block {
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+
+/* Native <dialog> top-layer modal rules per modern-web-guidance */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  transition-property: background-color, backdrop-filter, display, overlay;
+  transition-duration: 0.26s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+dialog {
+  opacity: 0;
+  transform: scale(0.95) translateY(8px);
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.26s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+:is(dialog[open]):where(:not([data-closing])) {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.86);
+    backdrop-filter: blur(8px);
+
+    @starting-style {
+      background-color: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0px);
+    }
+  }
+}
+
+/* Card Popping Hover Animation with Rationed Chromatic Halo */
+.tcg-card-pop {
+  transition:
+    transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.tcg-card-pop:hover,
+.tcg-card-pop:focus-visible {
+  transform: translateY(-8px) scale(1.025);
+  border-color: #8870b6;
+  box-shadow: 0 0 32px rgba(136, 112, 182, 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog,
+  dialog::backdrop,
+  .tcg-card-pop {
+    transform: none !important;
+    transition-duration: 0.08s !important;
+  }
+
+  @starting-style {
+    :is(dialog[open]):where(:not([data-closing])) {
+      transform: none;
+    }
+  }
+}
