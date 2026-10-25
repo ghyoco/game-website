@@ -13,23 +13,21 @@ export interface StoryChapter {
 
 export interface GuideStep {
   stepNumber: string;
-  phaseCode: string;
+  phaseLabel: { id: string; en: string };
   title: { id: string; en: string };
   summary: { id: string; en: string };
   bullets: { id: string[]; en: string[] };
-  telemetryCode: string[];
   visualSlot: {
-    id: string;
     aspect: string;
-    annotation: string;
-    spec: string;
+    annotation: { id: string; en: string };
+    spec: { id: string; en: string };
   };
 }
 
 export const STORY_CHAPTERS: StoryChapter[] = [
   {
     id: "bab-1",
-    chapterCode: "ACT 01 // DESPERATION",
+    chapterCode: "BAB 01 • KEPUTUSASAAN",
     perspective: "Babi Ngepet",
     featuredCardId: "pak-karta",
     title: {
@@ -50,11 +48,12 @@ export const STORY_CHAPTERS: StoryChapter[] = [
         "The price of the pact was harrowing. Pak Karta's own child became the Tumbal Anak sacrifice to shield him in the dark, while his wife Mbok Sumi was stationed indoors to guard the sacred candle flame.",
       ],
     },
-    visualSpec: "16:9 Scene Slot • Pak Karta holding the ritual shroud while Mbok Sumi lights the candle in a dim wooden room.",
+    visualSpec:
+      "Ilustrasi 16:9 • Pak Karta memegang jubah ritual sementara Mbok Sumi menyalakan lilin di kamar kayu.",
   },
   {
     id: "bab-2",
-    chapterCode: "ACT 02 // THE CANDLE VIGIL",
+    chapterCode: "BAB 02 • PENJAGAAN LILIN",
     perspective: "Babi Ngepet",
     featuredCardId: "mbok-sumi",
     title: {
@@ -75,11 +74,12 @@ export const STORY_CHAPTERS: StoryChapter[] = [
         "Yet every transformation erodes what remains of his soul. Cross the final threshold, and Pak Karta ceases to be a man in disguise—mutating into the ruthless Siluman Babi that has forsaken all humanity.",
       ],
     },
-    visualSpec: "16:9 Scene Slot • Split frame of Mbok Sumi guarding the flickering candle and Siluman Babi emerging in the dark.",
+    visualSpec:
+      "Ilustrasi 16:9 • Bingkai terbelah antara Mbok Sumi yang menjaga nyala lilin dan wujud Siluman Babi di kegelapan malam.",
   },
   {
     id: "bab-3",
-    chapterCode: "ACT 03 // PURNAMA JUMAT LEGI",
+    chapterCode: "BAB 03 • PURNAMA JUMAT LEGI",
     perspective: "Warga",
     featuredCardId: "amukan-warga",
     title: {
@@ -100,14 +100,18 @@ export const STORY_CHAPTERS: StoryChapter[] = [
         "The climax arrived under the Purnama Jumat Legi full moon. A stray Kucing Liar slipped inside to disrupt Mbok Sumi's candle vigil, while outside, the full Amukan Warga cornered the culprit for his final reckoning.",
       ],
     },
-    visualSpec: "16:9 Scene Slot • Warga Desa evolving into Pasukan Obor and Amukan Warga beneath a red-marked Friday Legi calendar.",
+    visualSpec:
+      "Ilustrasi 16:9 • Warga Desa berevolusi menjadi Pasukan Obor dan Amukan Warga di bawah kalender Purnama Jumat Legi.",
   },
 ];
 
 export const GUIDE_STEPS: GuideStep[] = [
   {
     stepNumber: "01",
-    phaseCode: "BOARD ARCHITECTURE // ACTIVE & BENCH",
+    phaseLabel: {
+      id: "Tata Letak Meja • Slot Aktif & Bench",
+      en: "Arena Layout • Active Slot & Bench",
+    },
     title: {
       id: "Struktur Arena: Slot Aktif & Bench",
       en: "Arena Structure: Active Slot & Bench",
@@ -120,7 +124,7 @@ export const GUIDE_STEPS: GuideStep[] = [
       id: [
         "Slot Aktif: Hanya kartu Unit di Slot Aktif yang dapat melancarkan serangan utama dan menerima serangan langsung.",
         "Zona Bench: Kartu Mbok Sumi (50 HP) ditempatkan di Bench untuk mengaktifkan efek Pasif [Mendukung] bagi Pak Karta.",
-        "Ancaman Bench: Waspadai kartu Spell seperti Kucing Liar yang dapat menyerang Mbok Sumi langsung di Bench sebanyak 40 DMG.",
+        "Ancaman Bench: Waspadai kartu Spell seperti Kucing Liar yang dapat menyerang Mbok Sumi langsung di Bench sebesar 40 DMG.",
       ],
       en: [
         "Active Slot: Only the Unit stationed in the Active Slot can execute primary attacks and absorb standard combat hits.",
@@ -128,21 +132,24 @@ export const GUIDE_STEPS: GuideStep[] = [
         "Bench Threat: Watch out for Spell cards like Kucing Liar that snipe Mbok Sumi directly on the Bench for 40 DMG.",
       ],
     },
-    telemetryCode: [
-      "zone.active = Unit(PakKarta | WargaDesa)",
-      "zone.bench  = Support(MbokSumi, hp: 50)",
-      "if (bench.has('Mbok Sumi')) allowTransform(PakKarta)",
-    ],
     visualSlot: {
-      id: "SPEC-01",
-      aspect: "16:9 Board Diagram",
-      annotation: "Game designer board diagram goes here",
-      spec: "Top-down tabletop layout: Active Slot, Bench Zone, Hand Zone, and Energy Pool (1280×720px)",
+      aspect: "Diagram Arena 16:9",
+      annotation: {
+        id: "Diagram tata letak meja permainan",
+        en: "Tabletop board layout diagram",
+      },
+      spec: {
+        id: "Tampilan atas meja permainan: posisi Slot Aktif, Zona Bench, Kartu Tangan, dan Cadangan Energi.",
+        en: "Top-down tabletop layout: Active Slot, Bench Zone, Hand Zone, and Energy Pool.",
+      },
     },
   },
   {
     stepNumber: "02",
-    phaseCode: "TRANSFORMATION vs EVOLUTION // FACTION ENGINE",
+    phaseLabel: {
+      id: "Mekanika Kubu • Perubahan Wujud vs Evolusi",
+      en: "Faction Engine • Transformation vs Evolution",
+    },
     title: {
       id: "Perubahan Wujud Pak Karta vs Evolusi Warga",
       en: "Pak Karta's Transformation vs Warga Evolution",
@@ -153,31 +160,34 @@ export const GUIDE_STEPS: GuideStep[] = [
     },
     bullets: {
       id: [
-        "Jalur Babi Ngepet: Pak Karta (150 HP, 20 DMG) -> Babi Ngepet (100 HP, 40 DMG + curi 1 Energi) -> Siluman Babi (200 HP, 100 DMG).",
+        "Jalur Babi Ngepet: Pak Karta (150 HP, 20 DMG), berubah ke Babi Ngepet (100 HP, 40 DMG + curi 1 Energi), hingga Siluman Babi (200 HP, 100 DMG).",
         "Syarat Mutlak: Perubahan wujud Pak Karta hanya bisa dilakukan selama Mbok Sumi masih bertahan hidup di dalam Bench.",
-        "Jalur Evolusi Warga: Warga Desa (Evo 1: 150 HP, 30 DMG) -> Pasukan Obor (Evo 2: 200 HP, 45 DMG) -> Amukan Warga (Evo 3: 220 HP, 75 DMG).",
+        "Jalur Evolusi Warga: Warga Desa (Evo 1: 150 HP, 30 DMG), naik ke Pasukan Obor (Evo 2: 200 HP, 45 DMG), hingga Amukan Warga (Evo 3: 220 HP, 75 DMG).",
       ],
       en: [
-        "Babi Ngepet Line: Pak Karta (150 HP, 20 DMG) -> Babi Ngepet (100 HP, 40 DMG + steal 1 Energy) -> Siluman Babi (200 HP, 100 DMG).",
+        "Babi Ngepet Line: Pak Karta (150 HP, 20 DMG), shifting to Babi Ngepet (100 HP, 40 DMG + steal 1 Energy), up to Siluman Babi (200 HP, 100 DMG).",
         "Candle Requirement: Pak Karta can only shapeshift while Mbok Sumi remains alive on the Bench.",
-        "Warga Evolution Line: Warga Desa (Evo 1: 150 HP, 30 DMG) -> Pasukan Obor (Evo 2: 200 HP, 45 DMG) -> Amukan Warga (Evo 3: 220 HP, 75 DMG).",
+        "Warga Evolution Line: Warga Desa (Evo 1: 150 HP, 30 DMG), evolving into Pasukan Obor (Evo 2: 200 HP, 45 DMG), up to Amukan Warga (Evo 3: 220 HP, 75 DMG).",
       ],
     },
-    telemetryCode: [
-      "BabiNgepet.skill('Mencuri Kekayaan') -> dmg: 40, stealEnergy: 1",
-      "SilumanBabi.skill('Hilang Kemanusiaan') -> dmg: 100, hp: 200",
-      "Warga.evolve(1 -> 2 -> 3) -> hp: 220, dmg: 75",
-    ],
     visualSlot: {
-      id: "SPEC-02",
-      aspect: "16:9 Evolution Flowchart",
-      annotation: "Transformation & Evolution tree visual",
-      spec: "Side-by-side comparison diagram of Pak Karta's shapeshift condition vs Warga Evo 1-2-3 progression (1280×720px)",
+      aspect: "Alur Karakter 16:9",
+      annotation: {
+        id: "Bagan alur perubahan wujud & evolusi",
+        en: "Transformation & Evolution flow diagram",
+      },
+      spec: {
+        id: "Perbandingan berdampingan antara syarat perubahan wujud Pak Karta dan tahapan Evolusi 1–2–3 Warga.",
+        en: "Side-by-side comparison of Pak Karta's shapeshift condition vs Warga Evo 1–2–3 progression.",
+      },
     },
   },
   {
     stepNumber: "03",
-    phaseCode: "ENERGY & HAND SPELLS // TACTICAL TIMING",
+    phaseLabel: {
+      id: "Manajemen Taktis • Energi & Kartu Spell",
+      en: "Tactical Timing • Energy & Hand Spells",
+    },
     title: {
       id: "Manajemen Energi & Kartu Spell Tangan",
       en: "Energy Economy & Hand Spell Counters",
@@ -198,21 +208,24 @@ export const GUIDE_STEPS: GuideStep[] = [
         "Punarma Jumat Legi (Warga Burst): Play when Babi Ngepet is in the opponent's Active Slot to grant +50 DMG to the next Warga attack.",
       ],
     },
-    telemetryCode: [
-      "if (hand.contains('Tumbal Anak')) babiNgepet.incomingSkillDmg = 0",
-      "if (opponent.active == 'Babi Ngepet') warga.nextAttack += 50",
-      "KucingLiar.cast() -> target('Mbok Sumi').dealDamage(40)",
-    ],
     visualSlot: {
-      id: "SPEC-03",
-      aspect: "16:9 Spell Interaction Diagram",
-      annotation: "Visual guide for Spell & Energy interactions",
-      spec: "Diagram showing Tumbal Anak hand protection, Kucing Liar bench snipe, and Punarma +50 DMG combo (1280×720px)",
+      aspect: "Interaksi Spell 16:9",
+      annotation: {
+        id: "Ilustrasi interaksi kartu Spell & Energi",
+        en: "Visual guide for Spell & Energy interactions",
+      },
+      spec: {
+        id: "Ilustrasi perlindungan tangan Tumbal Anak, serangan Kucing Liar ke Bench, serta kombo +50 DMG Punarma Jumat Legi.",
+        en: "Diagram showing Tumbal Anak hand protection, Kucing Liar bench snipe, and Punarma +50 DMG combo.",
+      },
     },
   },
   {
     stepNumber: "04",
-    phaseCode: "VICTORY CONDITIONS // ENDGAME",
+    phaseLabel: {
+      id: "Penentuan Akhir • Syarat Kemenangan",
+      en: "Endgame • Victory Conditions",
+    },
     title: {
       id: "Cara Meraih Kemenangan",
       en: "How to Win the Match",
@@ -231,15 +244,16 @@ export const GUIDE_STEPS: GuideStep[] = [
         "Warga Victory: Eliminate Mbok Sumi on the Bench (50 HP) with Kucing Liar to lock Pak Karta out of transforming, or burst Babi Ngepet down with Amukan Warga + Punarma Jumat Legi (125 DMG).",
       ],
     },
-    telemetryCode: [
-      "win.babiNgepet = warga.activeHP <= 0",
-      "win.warga      = pakKarta.activeHP <= 0 || mbokSumi.eliminated",
-    ],
     visualSlot: {
-      id: "SPEC-04",
-      aspect: "16:9 Endgame Infographic",
-      annotation: "Endgame win condition graphic",
-      spec: "Visual summary of the two asymmetric victory paths and lethal damage thresholds (1280×720px)",
+      aspect: "Ringkasan Akhir 16:9",
+      annotation: {
+        id: "Infografik jalur kemenangan kedua kubu",
+        en: "Endgame win condition graphic",
+      },
+      spec: {
+        id: "Ringkasan visual dua jalur kemenangan asimetris beserta ambang serangan penentu.",
+        en: "Visual summary of the two asymmetric victory paths and lethal damage thresholds.",
+      },
     },
   },
 ];

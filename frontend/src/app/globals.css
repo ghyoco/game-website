@@ -29,33 +29,43 @@
   --color-soft-lilac: #c8b4cb;
   --color-bg-warm-gold: #e8dda8;
 
-  /* Gradients */
+  /* Perceptual Oklab Gradients from bg.png (better-colors) */
   --gradient-bg-purple: linear-gradient(
-    135deg,
+    135deg in oklab,
     #0c0813 0%,
     #261f37 28%,
     #594485 68%,
     #8870b6 100%
   );
   --gradient-hero-cloud: radial-gradient(
-    62% 54% at 50% 48%,
-    rgba(136, 112, 182, 0.34) 0%,
-    rgba(89, 68, 133, 0.24) 45%,
-    rgba(38, 31, 55, 0.12) 72%,
+    64% 56% at 50% 46%,
+    rgba(136, 112, 182, 0.36) 0%,
+    rgba(89, 68, 133, 0.25) 44%,
+    rgba(38, 31, 55, 0.12) 74%,
     rgba(0, 0, 0, 0) 100%
+  );
+  --gradient-surface-sheen: linear-gradient(
+    180deg in oklab,
+    rgba(136, 112, 182, 0.08) 0%,
+    rgba(38, 31, 55, 0.02) 42%,
+    rgba(17, 17, 17, 0) 100%
   );
 
   /* Elevation & Hairlines */
   --shadow-hairline: 0 0 0 1px #272626;
   --shadow-nav-pill: 0 4px 20px rgba(0, 0, 0, 0.45);
   --shadow-console-glow: 0 0 40px rgba(119, 96, 162, 0.24);
-  --shadow-card-halo: 0 0 32px rgba(136, 112, 182, 0.2);
+  --shadow-card-halo: 0 0 32px rgba(136, 112, 182, 0.22);
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
-  --font-annotation: var(--font-caveat), cursive;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-annotation: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-padding-block-start: 6rem;
 }
 
 body {
@@ -63,19 +73,68 @@ body {
   color: var(--color-bone-text);
   font-family: var(--font-sans);
   letter-spacing: 0.004em;
+  overflow-x: clip;
 }
 
-/* Display & Headline Typography utilities per design.md Section 4 */
+p,
+li {
+  text-wrap: pretty;
+}
+
+/* Display & Headline Typography utilities per design.md & better-typography */
 .text-display-block {
-  font-weight: 500;
-  line-height: 1.03;
-  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
 .text-heading-block {
-  font-weight: 500;
+  font-family: var(--font-sans);
+  font-weight: 600;
   line-height: 1.18;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Natural bg.png Purple Headline Gradient */
+.hero-purple-gradient {
+  background: linear-gradient(
+    135deg in oklab,
+    #c8b4cb 0%,
+    #a892c4 45%,
+    #8870b6 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Spiced-up Obsidian Surface with Subtle Top Specular Edge & Violet Sheen (better-ui + better-colors) */
+.obsidian-panel {
+  background-color: #111111;
+  background-image: var(--gradient-surface-sheen);
+  border: 1px solid #272626;
+  box-shadow: inset 0 1px 0 0 rgba(168, 146, 196, 0.12);
+}
+
+.purple-pill-badge {
+  background: linear-gradient(
+    135deg in oklab,
+    rgba(92, 71, 138, 0.24) 0%,
+    rgba(38, 31, 55, 0.48) 100%
+  );
+  border: 1px solid rgba(168, 146, 196, 0.36);
+  box-shadow: inset 0 1px 0 0 rgba(200, 180, 203, 0.16);
+}
+
+/* Keyboard Focus Ring (better-accessibility) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #a892c4;
+  outline-offset: 2px;
 }
 
 /* Native <dialog> top-layer modal rules per modern-web-guidance */
@@ -96,7 +155,7 @@ dialog::backdrop {
 
 dialog {
   opacity: 0;
-  transform: scale(0.95) translateY(8px);
+  transform: scale(0.96) translateY(8px);
   transition-property: opacity, transform, display, overlay;
   transition-duration: 0.26s;
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
@@ -109,7 +168,7 @@ dialog {
 
   @starting-style {
     opacity: 0;
-    transform: scale(0.95) translateY(8px);
+    transform: scale(0.96) translateY(8px);
   }
 
   &::backdrop {
@@ -123,19 +182,67 @@ dialog {
   }
 }
 
-/* Card Popping Hover Animation with Rationed Chromatic Halo */
+/* Card Popping Hover Animation with Rationed Chromatic Halo (better-ui) */
 .tcg-card-pop {
   transition:
-    transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.24s ease,
-    box-shadow 0.24s ease;
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
 }
 
 .tcg-card-pop:hover,
 .tcg-card-pop:focus-visible {
-  transform: translateY(-8px) scale(1.025);
+  transform: translateY(-6px) scale(1.02);
   border-color: #8870b6;
-  box-shadow: 0 0 32px rgba(136, 112, 182, 0.22);
+  box-shadow:
+    0 12px 32px -8px rgba(0, 0, 0, 0.7),
+    0 0 28px rgba(136, 112, 182, 0.24),
+    inset 0 1px 0 0 rgba(200, 180, 203, 0.22);
+}
+
+/* Interactive Press Scale to 0.96 & Staggered Entrance (better-ui) */
+@media (prefers-reduced-motion: no-preference) {
+  .press-scale {
+    transition:
+      transform 150ms ease-out,
+      background-color 150ms ease,
+      border-color 150ms ease,
+      color 150ms ease,
+      opacity 150ms ease;
+  }
+
+  .press-scale:active:not(:disabled) {
+    transform: scale(0.96);
+  }
+
+  .tcg-card-pop:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  @keyframes enterUp {
+    from {
+      opacity: 0;
+      filter: blur(4px);
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
+  }
+
+  .enter-stagger-1 {
+    animation: enterUp 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .enter-stagger-2 {
+    animation: enterUp 320ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+  }
+
+  .enter-stagger-3 {
+    animation: enterUp 320ms cubic-bezier(0.22, 1, 0.36, 1) 160ms both;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

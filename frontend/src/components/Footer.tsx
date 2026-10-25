@@ -20,7 +20,7 @@ export function Footer() {
           <p className="mt-1.5 text-[13px] text-[#918d8d]">
             {t.footer.projectNote}
           </p>
-          <p className="mt-0.5 font-mono text-[11px] tracking-[0.025em] text-[#58595b]">
+          <p className="mt-1 text-[12px] text-[#58595b]">
             {t.footer.folkloreNote}
           </p>
         </div>

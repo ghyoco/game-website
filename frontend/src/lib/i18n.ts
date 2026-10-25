@@ -116,12 +116,12 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
     },
     landing: {
       badge: "Tactical Folklore TCG • 12 Kartu Prototipe Resmi",
-      titleLine1: "Babi Ngepet vs Warga.",
-      titleLine2: "Pertarungan malam di atas meja taktis.",
+      titleLine1: "Babi Ngepet vs Warga",
+      titleLine2: "Pertarungan malam di atas meja taktis",
       lead: "Satu pihak menjaga lilin Mbok Sumi di Bench agar Pak Karta dapat berubah wujud dan mencuri energi desa, sementara pihak lain menyalakan obor Warga hingga puncak Purnama Jumat Legi.",
       ctaCards: "Jelajahi Daftar Kartu",
       ctaGuide: "Pelajari Mekanika",
-      ctaDemo: "Arena Demo (TBA) ->",
+      ctaDemo: "Arena Demo (TBA)",
       annotationHero: "Klik kartu di daftar untuk zoom ukuran penuh!",
       stripLabel: "KOMPONEN INTI PERMAINAN KARTU",
       aboutTag: "TENTANG PERMAINAN",
@@ -147,7 +147,7 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
           heading: "Evolusi Tiga Tahap & Serangan Balik Purnama",
           body: "Kubu Warga membangun kekuatan secara bertahap menggunakan Elemen Obor (Fire). Dimulai dari Warga Desa (150 HP), berevolusi menjadi Pasukan Obor (200 HP), hingga mencapai wujud puncak Amukan Warga (220 HP, 75 DMG).",
           bullets: [
-            "Jalur Evolusi Konsisten: 150 HP -> 200 HP -> 220 HP dengan peningkatan serangan bertahap.",
+            "Jalur Evolusi Konsisten: 150 HP ke 200 HP hingga 220 HP dengan peningkatan serangan bertahap.",
             "Kucing Liar (40 DMG): Menyerang Mbok Sumi langsung di Bench lawan untuk memutus lilin perubahan wujud.",
             "Punarma Jumat Legi (+50 DMG): Menggandakan daya hancur Warga saat Babi Ngepet berada di Slot Aktif.",
           ],
@@ -160,28 +160,28 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
         "Mengangkat mitos urban Nusantara ke dalam format permainan kartu strategi modern.",
       purposeCards: [
         {
-          code: "01 // FOLKLORE",
+          code: "01",
           title: "Adaptasi Cerita Rakyat ke Mekanika Kartu",
           body: "Setiap aturan kartu menerjemahkan elemen cerita asli: lilin Mbok Sumi menjadi mekanika Bench Support, sedangkan malam Jumat Legi menjadi kartu kombo penentu.",
         },
         {
-          code: "02 // STRATEGY",
+          code: "02",
           title: "Kedalaman Taktis 1-Lawan-1",
           body: "Menciptakan tarik-ulur antara mencuri poin energi lawan di Slot Aktif, menahan kartu pelindung di tangan, atau mengincar unit pendukung di Bench.",
         },
         {
-          code: "03 // PLATFORM",
+          code: "03",
           title: "Pusat Arsip Kartu & Pratinjau Web",
           body: "Website ini dirancang sebagai katalog kartu interaktif, dokumentasi cerita dan panduan bermain, serta fondasi untuk mode demo 1-pertandingan.",
         },
       ],
     },
     cardsPage: {
-      badge: "CARD COMPENDIUM // 12 ASSETS",
+      badge: "KATALOG KARTU • 12 ASET PROTOTIPE",
       title: "Daftar Kartu Permainan",
       subtitle:
         "Telusuri seluruh kartu karakter, evolusi, spell, dan elemen. Arahkan kursor untuk efek pop-up dan klik kartu untuk membuka pratinjau ukuran penuh.",
-      searchPlaceholder: "Cari nama kartu (mis. Babi Ngepet, Mbok Sumi, Warga, Kucing)...",
+      searchPlaceholder: "Cari nama kartu (mis. Babi Ngepet, Mbok Sumi, Warga, Kucing)…",
       allFactions: "Semua Kubu",
       allTypes: "Semua Tipe",
       showingCount: "Menampilkan kartu",
@@ -194,11 +194,11 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
       effectLabel: "Efek & Mekanika Kartu",
       loreLabel: "Kutipan Cerita Kartu",
       roleLabel: "Peran Taktis",
-      closeModal: "Tutup [ESC]",
-      clickToInspect: "Klik untuk perbesar ->",
+      closeModal: "Tutup (Esc)",
+      clickToInspect: "Perbesar kartu",
     },
     storyPage: {
-      badge: "LORE ARCHIVE // DESA ARCHIVES",
+      badge: "ARSIP CERITA • KRONIK DESA",
       title: "Cerita di Balik Babi Ngepet vs Warga",
       subtitle:
         "Kisah keputusasaan Pak Karta, kesetiaan Mbok Sumi menjaga lilin, dan bangkitnya amarah Warga Desa pada malam Jumat Legi.",
@@ -207,7 +207,7 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
       designerNote: "Bingkai visual tambahan untuk ilustrasi bab oleh desainer game.",
     },
     guidePage: {
-      badge: "RULEBOOK // HOW TO PLAY",
+      badge: "BUKU PANDUAN • CARA BERMAIN",
       title: "Panduan Cara Bermain",
       subtitle:
         "Pelajari tata letak meja (Slot Aktif & Bench), syarat perubahan wujud Pak Karta, tahapan evolusi Warga, serta penggunaan kartu Spell.",
@@ -222,7 +222,7 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
         "Gunakan Kucing Liar untuk mengeliminasi Mbok Sumi di Bench (50 HP) agar Pak Karta kehilangan wujud silumannya, atau tumbangkan Babi Ngepet di Slot Aktif dengan kombo Amukan Warga + Punarma Jumat Legi.",
     },
     demoPage: {
-      badge: "TBA // FUTURE EXPANSION",
+      badge: "TBA • EKSPANSI MENDATANG",
       title: "Demo Permainan Web (1 Pertandingan)",
       subtitle:
         "Ekspansi masa depan: simulasi pertandingan tunggal langsung di dalam website menggunakan dek bawaan tanpa pencatatan riwayat tanding.",
@@ -256,12 +256,12 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
     },
     landing: {
       badge: "Tactical Folklore TCG • 12 Official Prototype Cards",
-      titleLine1: "Babi Ngepet vs Warga.",
-      titleLine2: "Midnight folklore on a tactical grid.",
+      titleLine1: "Babi Ngepet vs Warga",
+      titleLine2: "Midnight folklore on a tactical grid",
       lead: "One side protects Mbok Sumi's candle on the Bench so Pak Karta can shapeshift and drain village energy, while the other ignites Warga torches toward the Friday Legi full moon reckoning.",
       ctaCards: "Explore Card List",
       ctaGuide: "Read How to Play",
-      ctaDemo: "Demo Arena (TBA) ->",
+      ctaDemo: "Demo Arena (TBA)",
       annotationHero: "Click any card in the compendium to zoom!",
       stripLabel: "CORE TACTICAL GAMEPLAY PILLARS",
       aboutTag: "WHAT THE GAME IS ABOUT",
@@ -287,7 +287,7 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
           heading: "Three-Stage Evolution & Full Moon Counterattack",
           body: "The Warga faction scales steadily using Fire Element energy. Starting from Warga Desa (150 HP), units evolve into Pasukan Obor (200 HP) and culminate in Amukan Warga (220 HP, 75 DMG).",
           bullets: [
-            "Steady Evolution Line: 150 HP -> 200 HP -> 220 HP with escalating attack damage.",
+            "Steady Evolution Line: 150 HP to 200 HP up to 220 HP with escalating attack damage.",
             "Kucing Liar (40 DMG): Snipes Mbok Sumi directly on the opponent's Bench to sever the candle link.",
             "Punarma Jumat Legi (+50 DMG): Massively amplifies the next Warga attack when Babi Ngepet is in the Active Slot.",
           ],
@@ -300,28 +300,28 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
         "Translating iconic Indonesian urban folklore into a competitive tabletop and digital card game.",
       purposeCards: [
         {
-          code: "01 // FOLKLORE",
+          code: "01",
           title: "Folklore-Driven Card Mechanics",
           body: "Every card rule mirrors the legend: Mbok Sumi's candle becomes a Bench Support mechanic, while Friday Legi becomes a high-impact conditional burst card.",
         },
         {
-          code: "02 // STRATEGY",
+          code: "02",
           title: "1v1 Asymmetric Tactical Depth",
           body: "Creates tight mind games between draining energy in the Active Slot, holding defensive cards in hand, and sniping key support units on the Bench.",
         },
         {
-          code: "03 // PLATFORM",
+          code: "03",
           title: "Interactive Compendium & Demo Hub",
           body: "Built as the central card database, lore archive, rulebook, and foundation for the upcoming single-match web demo.",
         },
       ],
     },
     cardsPage: {
-      badge: "CARD COMPENDIUM // 12 ASSETS",
+      badge: "CARD COMPENDIUM • 12 PROTOTYPE ASSETS",
       title: "Game Card List",
       subtitle:
         "Browse all character, evolution, spell, and element cards. Hover for a popping lift animation and click any card to inspect the high-resolution zoomed view.",
-      searchPlaceholder: "Search by card name (e.g. Babi Ngepet, Mbok Sumi, Warga, Kucing)...",
+      searchPlaceholder: "Search by card name (e.g. Babi Ngepet, Mbok Sumi, Warga, Kucing)…",
       allFactions: "All Factions",
       allTypes: "All Types",
       showingCount: "Showing cards",
@@ -334,11 +334,11 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
       effectLabel: "Card Rule & Effect",
       loreLabel: "Card Lore Text",
       roleLabel: "Tactical Role",
-      closeModal: "Close [ESC]",
-      clickToInspect: "Click to zoom ->",
+      closeModal: "Close (Esc)",
+      clickToInspect: "Inspect card",
     },
     storyPage: {
-      badge: "LORE ARCHIVE // DESA ARCHIVES",
+      badge: "LORE ARCHIVE • DESA CHRONICLES",
       title: "The Story of Babi Ngepet vs Warga",
       subtitle:
         "The chronicle of Pak Karta's desperation, Mbok Sumi's candle vigil, and the villagers' uprising on Friday Legi night.",
@@ -347,7 +347,7 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
       designerNote: "Reserved frame for upcoming chapter illustrations by the game designer.",
     },
     guidePage: {
-      badge: "RULEBOOK // HOW TO PLAY",
+      badge: "RULEBOOK • HOW TO PLAY",
       title: "How to Play Guide",
       subtitle:
         "Master the arena layout (Active Slot & Bench), Pak Karta's transformation condition, the Warga evolution chain, and tactical Spell counters.",
@@ -362,7 +362,7 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
         "Use Kucing Liar to eliminate Mbok Sumi on the Bench (50 HP) and lock Pak Karta out of shapeshifting, or burst Babi Ngepet in the Active Slot with Amukan Warga + Punarma Jumat Legi.",
     },
     demoPage: {
-      badge: "TBA // FUTURE EXPANSION",
+      badge: "TBA • FUTURE EXPANSION",
       title: "In-Browser Demo Game (1-Game Match)",
       subtitle:
         "Planned future expansion: an embedded 1-game playable match inside the website using a fixed default deck with no persistent battle records.",

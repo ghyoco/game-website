@@ -116,16 +116,16 @@ export function CardZoomDialog({
       closedby="any"
       aria-labelledby="zoom-card-title"
       onClose={onClose}
-      className="m-auto w-[94vw] max-w-[880px] rounded-[12px] border border-[#272626] bg-[#111111] p-0 text-[#edecee] shadow-[0_0_40px_rgba(136,112,182,0.24)]"
+      className="obsidian-panel m-auto w-[94vw] max-w-[880px] rounded-[18px] p-0 text-[#edecee] shadow-[0_24px_64px_rgba(0,0,0,0.85),0_0_44px_rgba(136,112,182,0.24)]"
     >
       {card ? (
         <div className="p-6 sm:p-8">
           {/* Top Workspace Bar */}
           <div className="flex items-center justify-between gap-4 border-b border-[#272626] pb-4">
-            <div className="flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-[#8870b6]" />
-              <span className="font-mono text-[12px] tracking-[0.025em] text-[#a892c4]">
-                {`${card.code} // ${card.faction.toUpperCase()} // ${card.type.toUpperCase()}`}
+            <div className="flex items-center gap-2.5">
+              <span className="h-2 w-2 rounded-full bg-[#8870b6] shadow-[0_0_8px_#8870b6]" />
+              <span className="text-[12px] font-semibold tracking-[0.04em] text-[#a892c4] uppercase tabular-nums">
+                {`${card.code} • ${card.faction} • ${card.type}`}
               </span>
             </div>
 
@@ -138,7 +138,7 @@ export function CardZoomDialog({
                   onClose();
                 }
               }}
-              className="rounded-[4px] border border-[#272626] bg-[#191919] px-3 py-1.5 font-mono text-[12px] tracking-[0.025em] text-[#edecee] hover:border-[#8870b6] hover:text-[#ffffff] cursor-pointer"
+              className="press-scale rounded-full border border-[#33284d] bg-[#191919] px-4 py-1.5 text-[12px] font-semibold text-[#edecee] hover:border-[#8870b6] hover:text-[#ffffff] cursor-pointer"
             >
               {t.cardsPage.closeModal}
             </button>
@@ -147,12 +147,12 @@ export function CardZoomDialog({
           {/* Main 2-Column Inspection Grid */}
           <div className="mt-6 grid gap-8 md:grid-cols-12 md:items-center">
             {/* Left: Full High-Res SVG Card */}
-            <div className="md:col-span-6 flex items-center justify-center rounded-[8px] border border-[#272626] bg-[#141716] p-5 relative overflow-hidden">
+            <div className="md:col-span-6 flex items-center justify-center rounded-[12px] border border-[#272626] bg-[#141716] p-5 relative overflow-hidden">
               <div
                 className="pointer-events-none absolute inset-0"
                 style={{
                   background:
-                    "radial-gradient(65% 55% at 50% 50%, rgba(136, 112, 182, 0.24), transparent 100%)",
+                    "radial-gradient(65% 55% at 50% 50%, rgba(136, 112, 182, 0.26), transparent 100%)",
                 }}
               />
               <Image
@@ -165,15 +165,15 @@ export function CardZoomDialog({
               />
             </div>
 
-            {/* Right: Clinical Card Telemetry */}
+            {/* Right: Card Details */}
             <div className="md:col-span-6 space-y-4">
               <div>
-                <span className="font-mono text-[11px] tracking-[0.025em] text-[#918d8d]">
+                <span className="text-[12px] font-semibold tracking-[0.04em] text-[#a892c4] uppercase">
                   {card.roleTag}
                 </span>
                 <h2
                   id="zoom-card-title"
-                  className="mt-1 text-[32px] font-medium tracking-[-0.01em] text-[#ffffff] leading-[1.15]"
+                  className="mt-1 text-[32px] font-semibold tracking-[-0.02em] text-[#ffffff] leading-[1.15]"
                 >
                   {card.name}
                 </h2>
@@ -181,25 +181,25 @@ export function CardZoomDialog({
 
               {/* Stats Grid */}
               <div className="grid grid-cols-3 gap-2.5">
-                <div className="rounded-[8px] border border-[#272626] bg-[#141716] p-3">
-                  <span className="block font-mono text-[10px] tracking-[0.025em] text-[#918d8d]">
+                <div className="rounded-[10px] border border-[#272626] bg-[#141716] p-3">
+                  <span className="block text-[11px] font-medium text-[#918d8d]">
                     {t.cardsPage.hpLabel}
                   </span>
-                  <span className="mt-1 block font-mono text-[16px] font-medium text-[#ffffff]">
+                  <span className="mt-1 block text-[16px] font-semibold text-[#ffffff] tabular-nums">
                     {card.hp !== undefined ? card.hp : "—"}
                   </span>
                 </div>
-                <div className="rounded-[8px] border border-[#272626] bg-[#141716] p-3">
-                  <span className="block font-mono text-[10px] tracking-[0.025em] text-[#918d8d]">
+                <div className="rounded-[10px] border border-[#272626] bg-[#141716] p-3">
+                  <span className="block text-[11px] font-medium text-[#918d8d]">
                     {t.cardsPage.dmgLabel}
                   </span>
-                  <span className="mt-1 block font-mono text-[16px] font-medium text-[#a892c4]">
-                    {card.damage !== undefined ? `${card.damage} DMG` : "PASIF"}
+                  <span className="mt-1 block text-[16px] font-semibold text-[#c8b4cb] tabular-nums">
+                    {card.damage !== undefined ? `${card.damage} DMG` : "Pasif"}
                   </span>
                 </div>
-                <div className="rounded-[8px] border border-[#272626] bg-[#141716] p-3">
-                  <span className="block font-mono text-[10px] tracking-[0.025em] text-[#918d8d]">
-                    ELEMENT
+                <div className="rounded-[10px] border border-[#272626] bg-[#141716] p-3">
+                  <span className="block text-[11px] font-medium text-[#918d8d]">
+                    Elemen
                   </span>
                   <div className="mt-1 flex items-center gap-1.5">
                     <Image
@@ -210,7 +210,7 @@ export function CardZoomDialog({
                       unoptimized
                       className="h-4 w-4 object-contain"
                     />
-                    <span className="font-mono text-[13px] text-[#edecee]">
+                    <span className="text-[14px] font-medium text-[#edecee]">
                       {card.faction === "Babi Ngepet" ? "Dark" : "Fire"}
                     </span>
                   </div>
@@ -218,21 +218,21 @@ export function CardZoomDialog({
               </div>
 
               {/* Effect Block */}
-              <div className="rounded-[8px] border border-[#272626] bg-[#191919] p-4">
-                <span className="font-mono text-[11px] tracking-[0.025em] text-[#a892c4]">
+              <div className="rounded-[10px] border border-[#33284d] bg-[#191919] p-4 shadow-[inset_0_1px_0_0_rgba(168,146,196,0.14)]">
+                <span className="text-[12px] font-semibold text-[#c8b4cb]">
                   {t.cardsPage.effectLabel}
                 </span>
-                <p className="mt-2 text-[14px] leading-[1.55] text-[#edecee]">
+                <p className="mt-1.5 text-[14px] leading-[1.55] text-[#edecee]">
                   {card.effect[locale]}
                 </p>
               </div>
 
               {/* Lore Block */}
-              <div className="rounded-[8px] border border-[#272626] bg-[#141716] p-4">
-                <span className="font-mono text-[11px] tracking-[0.025em] text-[#918d8d]">
+              <div className="rounded-[10px] border border-[#272626] bg-[#141716] p-4">
+                <span className="text-[12px] font-semibold text-[#918d8d]">
                   {t.cardsPage.loreLabel}
                 </span>
-                <p className="mt-2 text-[14px] leading-[1.55] text-[#918d8d]">
+                <p className="mt-1.5 text-[14px] leading-[1.55] text-[#918d8d] italic">
                   &ldquo;{card.lore[locale]}&rdquo;
                 </p>
               </div>

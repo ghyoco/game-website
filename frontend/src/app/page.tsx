@@ -12,24 +12,25 @@ function HeroWorkspaceMockup({ annotation }: { annotation: string }) {
   const wargaCard = CARDS_DATA[7];
 
   return (
-    <div className="relative mx-auto mt-14 max-w-[1120px]">
+    <div className="enter-stagger-3 relative mx-auto mt-14 max-w-[1120px]">
       {/* Natural bg.png Purple Radial Cloud Backdrop */}
       <div
         className="pointer-events-none absolute -inset-x-8 -inset-y-10 opacity-90 blur-2xl"
         style={{ background: "var(--gradient-hero-cloud)" }}
       />
 
-      {/* Hand-drawn Caveat Annotation Overlay per design.md Section 4.3 & 6.15 */}
+      {/* Callout Note Overlay in Plus Jakarta Sans */}
       <div className="hidden lg:flex items-center gap-2 absolute -top-9 right-8 z-20">
-        <span className="font-annotation text-[21px] text-[#ffffff]">
+        <span className="text-[13px] font-medium text-[#c8b4cb]">
           {annotation}
         </span>
         <svg
-          width="42"
-          height="28"
+          width="38"
+          height="24"
           viewBox="0 0 42 28"
           fill="none"
-          className="text-[#a892c4] translate-y-2"
+          className="text-[#a892c4] translate-y-1.5"
+          aria-hidden="true"
         >
           <path
             d="M2 4C18 4 30 10 36 24M36 24L29 20M36 24L39 16"
@@ -41,61 +42,47 @@ function HeroWorkspaceMockup({ annotation }: { annotation: string }) {
         </svg>
       </div>
 
-      {/* Product Editor Panel (#21222b shell, 8px radius, 1px #272626 border) */}
-      <div className="relative z-10 overflow-hidden rounded-[8px] border border-[#272626] bg-[#21222b]">
-        {/* Top Tab Bar */}
-        <div className="flex flex-wrap items-center justify-between border-b border-[#272626] bg-[#191919] px-4 py-2.5">
-          <div className="flex items-center gap-2">
-            <div className="inline-flex items-center gap-2 rounded-[4px] border border-[#272626] bg-[#111111] px-3 py-1 text-[12px] font-medium text-[#ffffff]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#8870b6]" />
-              <span>arena-preview.tcg</span>
-            </div>
-            <span className="px-3 py-1 font-mono text-[12px] tracking-[0.025em] text-[#918d8d]">
-              deck-manifest.json
-            </span>
-          </div>
-          <span className="font-mono text-[11px] tracking-[0.025em] text-[#918d8d]">
-            BABI NGEPET VS WARGA // PROTOTYPE BUILD
-          </span>
-        </div>
-
+      {/* Product Workspace Panel (#21222b shell, concentric radii, 1px #272626 border) */}
+      <div className="relative z-10 overflow-hidden rounded-[16px] border border-[#33284d] bg-[#21222b] shadow-[0_24px_64px_rgba(0,0,0,0.65),inset_0_1px_0_0_rgba(200,180,203,0.16)]">
         {/* Inner Workspace Grid: Left Sidebar (#111111) + Main Canvas (#141716) */}
         <div className="grid lg:grid-cols-12">
-          <aside className="border-b border-[#272626] bg-[#111111] p-4 lg:col-span-3 lg:border-b-0 lg:border-r space-y-4 text-left">
+          <aside className="border-b border-[#272626] bg-[#111111] p-5 lg:col-span-3 lg:border-b-0 lg:border-r space-y-4 text-left">
             <div>
-              <span className="font-mono text-[10px] tracking-[0.12em] text-[#918d8d] uppercase">
-                ACTIVE TELEMETRY
+              <span className="text-[11px] font-semibold tracking-[0.08em] text-[#918d8d] uppercase">
+                Status Arena Aktif
               </span>
-              <div className="mt-2 space-y-1.5 font-mono text-[12px]">
-                <div className="flex items-center justify-between rounded-[4px] bg-[#191919] px-2.5 py-1.5 text-[#ffffff]">
-                  <span>Babi Ngepet</span>
-                  <span className="text-[#a892c4]">100 HP</span>
+              <div className="mt-2.5 space-y-2 text-[13px]">
+                <div className="flex items-center justify-between rounded-[8px] border border-[#272626] bg-[#191919] px-3 py-2 text-[#ffffff]">
+                  <span className="font-medium">Babi Ngepet</span>
+                  <span className="font-semibold text-[#c8b4cb] tabular-nums">100 HP</span>
                 </div>
-                <div className="flex items-center justify-between rounded-[4px] bg-[#191919] px-2.5 py-1.5 text-[#ffffff]">
-                  <span>Amukan Warga</span>
-                  <span className="text-[#e8dda8]">220 HP</span>
+                <div className="flex items-center justify-between rounded-[8px] border border-[#272626] bg-[#191919] px-3 py-2 text-[#ffffff]">
+                  <span className="font-medium">Amukan Warga</span>
+                  <span className="font-semibold text-[#e8dda8] tabular-nums">220 HP</span>
                 </div>
               </div>
             </div>
 
-            <div className="border-t border-[#272626] pt-3">
-              <span className="font-mono text-[10px] tracking-[0.12em] text-[#918d8d] uppercase">
-                BENCH SUPPORT
+            <div className="border-t border-[#272626] pt-3.5">
+              <span className="text-[11px] font-semibold tracking-[0.08em] text-[#918d8d] uppercase">
+                Zona Bench
               </span>
-              <div className="mt-2 rounded-[4px] border border-[#272626] bg-[#141716] p-2.5 font-mono text-[11px] text-[#d1d3d4]">
-                <span className="block text-[#a892c4]">Mbok Sumi (50 HP)</span>
+              <div className="mt-2 rounded-[8px] border border-[#33284d] bg-[#141716] p-3 text-[12px] text-[#d1d3d4]">
+                <span className="block font-semibold text-[#c8b4cb] tabular-nums">
+                  Mbok Sumi (50 HP)
+                </span>
                 <span className="mt-0.5 block text-[#918d8d]">
-                  Pasif: Lilin Aktif
+                  Pasif: Nyala Lilin Aktif
                 </span>
               </div>
             </div>
 
-            <div className="border-t border-[#272626] pt-3">
-              <span className="font-mono text-[10px] tracking-[0.12em] text-[#918d8d] uppercase">
-                ELEMENTS
+            <div className="border-t border-[#272626] pt-3.5">
+              <span className="text-[11px] font-semibold tracking-[0.08em] text-[#918d8d] uppercase">
+                Elemen Kartu
               </span>
               <div className="mt-2 flex items-center gap-3">
-                <div className="flex items-center gap-1.5 font-mono text-[11px] text-[#d1d3d4]">
+                <div className="flex items-center gap-1.5 rounded-full border border-[#272626] bg-[#191919] px-3 py-1 text-[12px] font-medium text-[#d1d3d4]">
                   <Image
                     src="/cards/Dark%20Element.svg"
                     alt="Dark"
@@ -106,7 +93,7 @@ function HeroWorkspaceMockup({ annotation }: { annotation: string }) {
                   />
                   <span>Dark</span>
                 </div>
-                <div className="flex items-center gap-1.5 font-mono text-[11px] text-[#d1d3d4]">
+                <div className="flex items-center gap-1.5 rounded-full border border-[#272626] bg-[#191919] px-3 py-1 text-[12px] font-medium text-[#d1d3d4]">
                   <Image
                     src="/cards/Fire%20Element.svg"
                     alt="Fire"
@@ -125,7 +112,7 @@ function HeroWorkspaceMockup({ annotation }: { annotation: string }) {
           <div className="bg-[#141716] p-5 sm:p-6 lg:col-span-9">
             <div className="grid gap-5 md:grid-cols-12 md:items-center">
               {/* Official bg.png Key Art Panel */}
-              <div className="md:col-span-7 overflow-hidden rounded-[8px] border border-[#272626] bg-[#000000]">
+              <div className="md:col-span-7 overflow-hidden rounded-[10px] border border-[#272626] bg-[#000000] outline-1 -outline-offset-1 outline-white/10">
                 <Image
                   src="/bg.png"
                   alt="Babi Ngepet vs Warga Key Art"
@@ -134,9 +121,9 @@ function HeroWorkspaceMockup({ annotation }: { annotation: string }) {
                   unoptimized
                   className="aspect-video w-full object-cover"
                 />
-                <div className="flex items-center justify-between border-t border-[#272626] bg-[#111111] px-3.5 py-2 font-mono text-[11px] text-[#918d8d]">
-                  <span>{"KEY ART // BABI NGEPET VS WARGA"}</span>
-                  <span className="text-[#a892c4]">1v1 DUEL</span>
+                <div className="flex items-center justify-between border-t border-[#272626] bg-[#111111] px-4 py-2.5 text-[12px] font-medium text-[#918d8d]">
+                  <span>Ilustrasi Utama • Babi Ngepet vs Warga</span>
+                  <span className="font-semibold text-[#c8b4cb]">Duel 1v1</span>
                 </div>
               </div>
 
@@ -146,7 +133,7 @@ function HeroWorkspaceMockup({ annotation }: { annotation: string }) {
                   <Link
                     key={card.id}
                     href="/cards"
-                    className="tcg-card-pop rounded-[6px] border border-[#272626] bg-[#111111] p-1.5 block"
+                    className="tcg-card-pop rounded-[10px] border border-[#272626] bg-[#111111] p-1.5 block"
                   >
                     <Image
                       src={card.svgPath}
@@ -181,39 +168,34 @@ export default function LandingPage() {
     <div className="mx-auto max-w-[1200px] px-6">
       {/* 1. Hero Block (design.md Section 5 & 8.1) */}
       <section className="pt-8 pb-20 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#a892c4] bg-transparent px-3.5 py-1.5 text-[12px] font-medium text-[#a892c4]">
-          <span>{t.landing.badge}</span>
-          <span className="font-mono">-&gt;</span>
-        </div>
-
-        <h1 className="mx-auto mt-6 max-w-[920px] text-display-block text-[44px] sm:text-[64px] lg:text-[76px]">
+        <h1 className="enter-stagger-1 mx-auto max-w-[920px] text-display-block text-[44px] sm:text-[64px] lg:text-[76px]">
           <span className="block text-[#ffffff]">{t.landing.titleLine1}</span>
-          <span className="block text-[#8870b6]">{t.landing.titleLine2}</span>
+          <span className="hero-purple-gradient block">{t.landing.titleLine2}</span>
         </h1>
 
-        <p className="mx-auto mt-6 max-w-[580px] text-[16px] sm:text-[18px] leading-[1.55] text-[#918d8d]">
+        <p className="enter-stagger-2 mx-auto mt-6 max-w-[580px] text-[16px] sm:text-[18px] leading-[1.6] text-[#918d8d]">
           {t.landing.lead}
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
+        <div className="enter-stagger-2 mt-8 flex flex-wrap items-center justify-center gap-3.5">
           {/* High-Contrast White Primary CTA */}
           <Link
             href="/cards"
-            className="rounded-[30px] bg-[#ffffff] px-6 py-3 text-[14px] font-medium text-[#000000] transition-opacity hover:opacity-90"
+            className="press-scale rounded-full bg-[#ffffff] px-6 py-3 text-[14px] font-semibold text-[#000000] shadow-[0_4px_20px_rgba(255,255,255,0.16)] hover:opacity-90"
           >
             {t.landing.ctaCards}
           </Link>
           {/* Secondary Outlined Violet CTA */}
           <Link
             href="/guide"
-            className="rounded-[30px] border border-[#8870b6] bg-transparent px-6 py-3 text-[14px] font-medium text-[#a892c4] transition-colors hover:bg-[#5c478a]/20 hover:text-[#ffffff]"
+            className="press-scale rounded-full border border-[#8870b6] bg-[#261f37]/35 px-6 py-3 text-[14px] font-semibold text-[#c8b4cb] hover:bg-[#5c478a]/30 hover:text-[#ffffff]"
           >
             {t.landing.ctaGuide}
           </Link>
           {/* Tertiary Arrow Text Link */}
           <Link
             href="/demo"
-            className="px-3 py-2 text-[14px] font-medium text-[#edecee] hover:text-[#ffffff] transition-colors"
+            className="press-scale px-3 py-2 text-[14px] font-medium text-[#edecee] hover:text-[#c8b4cb]"
           >
             {t.landing.ctaDemo}
           </Link>
@@ -222,26 +204,26 @@ export default function LandingPage() {
         <HeroWorkspaceMockup annotation={t.landing.annotationHero} />
       </section>
 
-      {/* 2. Monochrome Telemetry Strip (design.md Section 6.16) */}
+      {/* 2. Core Pillars Strip (design.md Section 6.16) */}
       <section className="border-y border-[#272626] py-8">
-        <p className="text-center font-mono text-[11px] tracking-[0.14em] text-[#918d8d] uppercase">
+        <p className="text-center text-[11px] font-semibold tracking-[0.12em] text-[#918d8d] uppercase">
           {t.landing.stripLabel}
         </p>
-        <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-5 text-center font-mono text-[12px] tracking-[0.025em] text-[#a3a3a3]">
-          <div className="rounded-[4px] border border-[#272626] bg-[#111111] py-2.5">
-            ACTIVE SLOT 1v1
+        <div className="mt-5 grid grid-cols-2 gap-3.5 sm:grid-cols-5 text-center text-[12px] font-semibold tracking-[0.04em] text-[#d1d3d4]">
+          <div className="obsidian-panel rounded-[10px] py-3">
+            SLOT AKTIF 1v1
           </div>
-          <div className="rounded-[4px] border border-[#272626] bg-[#111111] py-2.5">
+          <div className="obsidian-panel rounded-[10px] py-3">
             BENCH SUPPORT
           </div>
-          <div className="rounded-[4px] border border-[#272626] bg-[#111111] py-2.5">
-            3-STAGE EVOLUTION
+          <div className="obsidian-panel rounded-[10px] py-3">
+            EVOLUSI 3 TAHAP
           </div>
-          <div className="rounded-[4px] border border-[#272626] bg-[#111111] py-2.5">
-            DARK &amp; FIRE ENERGY
+          <div className="obsidian-panel rounded-[10px] py-3">
+            ENERGI DARK &amp; FIRE
           </div>
-          <div className="col-span-2 sm:col-span-1 rounded-[4px] border border-[#272626] bg-[#111111] py-2.5">
-            12 SVG PROTOTYPES
+          <div className="obsidian-panel col-span-2 sm:col-span-1 rounded-[10px] py-3 tabular-nums">
+            12 KARTU PROTOTIPE
           </div>
         </div>
       </section>
@@ -249,21 +231,21 @@ export default function LandingPage() {
       {/* 3. What the Game Is About — Segmented Tab Control + 2-Column Showcase */}
       <section className="py-24 space-y-12">
         <div className="text-center space-y-3">
-          <span className="font-mono text-[11px] tracking-[0.14em] text-[#a892c4] uppercase">
+          <span className="purple-pill-badge inline-flex items-center rounded-full px-3.5 py-1 text-[11px] font-semibold tracking-[0.08em] text-[#c8b4cb] uppercase">
             {t.landing.aboutTag}
           </span>
           <h2 className="text-heading-block text-[32px] sm:text-[42px] text-[#ffffff]">
             {t.landing.aboutHeading}
           </h2>
-          <p className="mx-auto max-w-[580px] text-[16px] text-[#918d8d]">
+          <p className="mx-auto max-w-[580px] text-[16px] leading-[1.55] text-[#918d8d]">
             {t.landing.aboutSubheading}
           </p>
 
-          {/* Segmented Tab Pill (30px radius per design.md Section 6.10) */}
+          {/* Segmented Tab Pill (Concentric rounded-full) */}
           <div className="pt-4 flex justify-center">
             <div
               role="tablist"
-              className="inline-flex flex-wrap items-center gap-1 rounded-[30px] border border-white/[0.1] bg-[#191919] p-1.5"
+              className="inline-flex flex-wrap items-center gap-1 rounded-full border border-white/[0.1] bg-[#191919] p-1"
             >
               {t.landing.tabs.map((tab) => {
                 const active = tab.id === currentTab.id;
@@ -274,15 +256,12 @@ export default function LandingPage() {
                     role="tab"
                     aria-selected={active}
                     onClick={() => setActiveTabId(tab.id)}
-                    className={`inline-flex items-center gap-2 rounded-[30px] px-5 py-2 text-[14px] transition-colors cursor-pointer ${
+                    className={`press-scale inline-flex items-center rounded-full px-5 py-2 text-[14px] cursor-pointer ${
                       active
-                        ? "bg-[#111111] text-[#ffffff] font-medium border border-[#272626]"
+                        ? "bg-[#111111] text-[#ffffff] font-semibold border border-[#33284d] shadow-[inset_0_1px_0_0_rgba(168,146,196,0.2)]"
                         : "text-[#d1d3d4] hover:text-[#ffffff]"
                     }`}
                   >
-                    {active ? (
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#8870b6]" />
-                    ) : null}
                     <span>{tab.label}</span>
                   </button>
                 );
@@ -292,31 +271,31 @@ export default function LandingPage() {
         </div>
 
         {/* 2-Column Feature Copy (Left) + Product/Card Panel (Right) */}
-        <div className="grid gap-8 rounded-[8px] border border-[#272626] bg-[#111111] p-6 sm:p-10 lg:grid-cols-12 lg:items-center">
+        <div className="obsidian-panel grid gap-8 rounded-[16px] p-6 sm:p-10 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-6 space-y-5 text-left">
             <h3 className="text-heading-block text-[24px] sm:text-[28px] text-[#ffffff]">
               {currentTab.heading}
             </h3>
-            <p className="max-w-[60ch] text-[15px] leading-[1.55] text-[#edecee]">
+            <p className="max-w-[60ch] text-[15px] leading-[1.6] text-[#edecee]">
               {currentTab.body}
             </p>
-            <ul className="space-y-3 border-t border-[#272626] pt-4 text-[14px] leading-[1.5] text-[#d1d3d4]">
+            <ul className="space-y-3 border-t border-[#272626] pt-4 text-[14px] leading-[1.55] text-[#d1d3d4]">
               {currentTab.bullets.map((bullet, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#8870b6]" />
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#8870b6] shadow-[0_0_8px_#8870b6]" />
                   <span>{bullet}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="lg:col-span-6 rounded-[8px] border border-[#272626] bg-[#141716] p-5">
+          <div className="lg:col-span-6 rounded-[12px] border border-[#272626] bg-[#141716] p-5">
             <div className="grid grid-cols-3 gap-3">
               {showcaseCards.map((card) => (
                 <Link
                   key={card.id}
                   href="/cards"
-                  className="tcg-card-pop rounded-[6px] border border-[#272626] bg-[#111111] p-2 block"
+                  className="tcg-card-pop rounded-[8px] border border-[#272626] bg-[#111111] p-2 block"
                 >
                   <Image
                     src={card.svgPath}
@@ -326,7 +305,7 @@ export default function LandingPage() {
                     unoptimized
                     className="w-full aspect-[630/880] object-contain"
                   />
-                  <span className="mt-2 block text-center font-mono text-[11px] text-[#edecee] truncate">
+                  <span className="mt-2 block text-center text-[12px] font-medium text-[#edecee] truncate">
                     {card.name}
                   </span>
                 </Link>
@@ -336,16 +315,13 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* 4. What the Project Is For — 3-Column Resource Card Grid (design.md Section 6.14) */}
+      {/* 4. What the Project Is For — 3-Column Resource Card Grid (No numbering/label, starts right away with title) */}
       <section className="py-12 space-y-10">
-        <div className="text-center space-y-2">
-          <span className="font-mono text-[11px] tracking-[0.14em] text-[#a892c4] uppercase">
-            {t.landing.purposeTag}
-          </span>
+        <div className="text-center space-y-2.5">
           <h2 className="text-heading-block text-[32px] sm:text-[40px] text-[#ffffff]">
             {t.landing.purposeHeading}
           </h2>
-          <p className="mx-auto max-w-[560px] text-[16px] text-[#918d8d]">
+          <p className="mx-auto max-w-[560px] text-[16px] leading-[1.55] text-[#918d8d]">
             {t.landing.purposeSubheading}
           </p>
         </div>
@@ -353,18 +329,15 @@ export default function LandingPage() {
         <div className="grid gap-6 md:grid-cols-3">
           {t.landing.purposeCards.map((card) => (
             <article
-              key={card.code}
-              className="flex flex-col justify-between rounded-[8px] border border-[#272626] bg-[#111111] p-8 text-left"
+              key={card.title}
+              className="obsidian-panel flex flex-col justify-between rounded-[16px] p-8 text-left transition-colors hover:border-[#5c478a]"
             >
               <div>
-                <div className="inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.025em] text-[#a892c4]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#8870b6]" />
-                  <span>{card.code}</span>
-                </div>
-                <h3 className="mt-4 text-[20px] font-medium tracking-[-0.01em] text-[#ffffff] leading-[1.3]">
+                <div className="mb-4 h-1 w-10 rounded-full bg-gradient-to-r from-[#5c478a] to-[#a892c4]" />
+                <h3 className="text-[20px] font-semibold tracking-[-0.015em] text-[#ffffff] leading-[1.3]">
                   {card.title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-[1.55] text-[#918d8d]">
+                <p className="mt-3 text-[14px] leading-[1.6] text-[#918d8d]">
                   {card.body}
                 </p>
               </div>

@@ -1,25 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Caveat } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageContext";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const caveat = Caveat({
-  variable: "--font-caveat",
-  subsets: ["latin"],
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -35,14 +24,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="id"
-      className={`${inter.variable} ${jetbrains.variable} ${caveat.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-[#000000] text-[#edecee] selection:bg-[#5c478a] selection:text-[#ffffff]">
+    <html lang="id" className={`${plusJakarta.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-[#000000] font-sans text-[#edecee] selection:bg-[#5c478a] selection:text-[#ffffff]">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-full focus:bg-[#ffffff] focus:px-4 focus:py-2 focus:text-[13px] focus:font-semibold focus:text-[#000000] focus:shadow-lg"
+        >
+          Langsung ke konten utama
+        </a>
         <LanguageProvider>
           <Navbar />
-          <main className="flex-1 pt-24">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-1 pt-24 focus:outline-none">
+            {children}
+          </main>
           <Footer />
         </LanguageProvider>
       </body>

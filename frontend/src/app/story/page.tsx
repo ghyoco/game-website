@@ -20,13 +20,13 @@ export default function StoryPage() {
     <div className="mx-auto max-w-[1200px] px-6 py-10 space-y-14">
       {/* Header + Segmented Perspective Filter */}
       <header className="text-center space-y-4">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[#a892c4] px-3.5 py-1 font-mono text-[11px] tracking-[0.025em] text-[#a892c4]">
+        <div className="purple-pill-badge inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-[11px] font-semibold tracking-[0.06em] text-[#c8b4cb] uppercase">
           <span>{t.storyPage.badge}</span>
         </div>
         <h1 className="text-display-block text-[40px] sm:text-[56px] text-[#ffffff]">
           {t.storyPage.title}
         </h1>
-        <p className="mx-auto max-w-[600px] text-[16px] leading-[1.5] text-[#918d8d]">
+        <p className="mx-auto max-w-[600px] text-[16px] leading-[1.55] text-[#918d8d]">
           {t.storyPage.subtitle}
         </p>
 
@@ -34,7 +34,7 @@ export default function StoryPage() {
           <div
             role="group"
             aria-label="Story perspective filter"
-            className="inline-flex flex-wrap items-center gap-1 rounded-[30px] border border-white/[0.1] bg-[#191919] p-1"
+            className="inline-flex flex-wrap items-center gap-1 rounded-full border border-white/[0.1] bg-[#191919] p-1"
           >
             {PERSPECTIVES.map((item) => {
               const active = perspective === item;
@@ -46,15 +46,12 @@ export default function StoryPage() {
                   type="button"
                   onClick={() => setPerspective(item)}
                   aria-pressed={active}
-                  className={`inline-flex items-center gap-2 rounded-[30px] px-4 py-1.5 text-[13px] transition-colors cursor-pointer ${
+                  className={`press-scale inline-flex items-center rounded-full px-4 py-1.5 text-[13px] cursor-pointer ${
                     active
-                      ? "bg-[#111111] text-[#ffffff] font-medium border border-[#272626]"
+                      ? "bg-[#111111] text-[#ffffff] font-semibold border border-[#33284d] shadow-[inset_0_1px_0_0_rgba(168,146,196,0.2)]"
                       : "text-[#d1d3d4] hover:text-[#ffffff]"
                   }`}
                 >
-                  {active ? (
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#8870b6]" />
-                  ) : null}
                   <span>{label}</span>
                 </button>
               );
@@ -64,7 +61,7 @@ export default function StoryPage() {
       </header>
 
       {/* Key Art Atmospheric Banner */}
-      <div className="overflow-hidden rounded-[8px] border border-[#272626] bg-[#111111]">
+      <div className="obsidian-panel overflow-hidden rounded-[16px] outline-1 -outline-offset-1 outline-white/10">
         <div className="relative">
           <Image
             src="/bg.png"
@@ -74,9 +71,9 @@ export default function StoryPage() {
             unoptimized
             className="max-h-[340px] w-full object-cover"
           />
-          <div className="flex items-center justify-between border-t border-[#272626] bg-[#141716] px-5 py-3 font-mono text-[11px] tracking-[0.025em] text-[#918d8d]">
-            <span>{"VISUAL ARCHIVE // DESA CHRONICLES"}</span>
-            <span className="text-[#a892c4]">PAK KARTA VS WARGA DESA</span>
+          <div className="flex items-center justify-between border-t border-[#272626] bg-[#141716] px-5 py-3 text-[12px] font-medium text-[#918d8d]">
+            <span>Arsip Visual • Kronik Desa</span>
+            <span className="font-semibold text-[#c8b4cb]">Pak Karta vs Warga Desa</span>
           </div>
         </div>
       </div>
@@ -91,14 +88,14 @@ export default function StoryPage() {
           return (
             <article
               key={chapter.id}
-              className="rounded-[8px] border border-[#272626] bg-[#111111] p-6 sm:p-10"
+              className="obsidian-panel rounded-[16px] p-6 sm:p-10"
             >
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#272626] pb-4 font-mono text-[12px] tracking-[0.025em]">
-                <div className="flex items-center gap-2 text-[#a892c4]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#8870b6]" />
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#272626] pb-4 text-[12px] font-semibold tracking-[0.04em]">
+                <div className="flex items-center gap-2 text-[#c8b4cb]">
+                  <span className="h-2 w-2 rounded-full bg-[#8870b6] shadow-[0_0_8px_#8870b6]" />
                   <span>{chapter.chapterCode}</span>
                 </div>
-                <span className="rounded-[4px] border border-[#272626] bg-[#191919] px-2.5 py-0.5 text-[#d1d3d4]">
+                <span className="rounded-full border border-[#33284d] bg-[#191919] px-3 py-0.5 text-[#d1d3d4]">
                   {chapter.perspective}
                 </span>
               </div>
@@ -109,23 +106,23 @@ export default function StoryPage() {
                     <h2 className="text-heading-block text-[26px] sm:text-[32px] text-[#ffffff]">
                       {chapter.title[locale]}
                     </h2>
-                    <p className="mt-2 text-[15px] font-medium text-[#a892c4]">
+                    <p className="mt-2 text-[15px] font-medium text-[#c8b4cb]">
                       {chapter.subtitle[locale]}
                     </p>
                   </div>
 
-                  <div className="space-y-4 max-w-[64ch] text-[15px] leading-[1.6] text-[#edecee]">
+                  <div className="space-y-4 max-w-[64ch] text-[15px] leading-[1.65] text-[#edecee]">
                     {chapter.paragraphs[locale].map((para, idx) => (
                       <p key={idx}>{para}</p>
                     ))}
                   </div>
 
                   {/* Designer Narrative Scene Placeholder */}
-                  <div className="rounded-[8px] border border-dashed border-[#414042] bg-[#141716] p-4">
-                    <span className="font-mono text-[11px] tracking-[0.025em] text-[#a892c4]">
-                      {`[${t.storyPage.visualPlaceholderTag} // ${chapter.id.toUpperCase()}]`}
+                  <div className="rounded-[12px] border border-dashed border-[#5c478a]/55 bg-[#141716] p-4">
+                    <span className="text-[11px] font-semibold tracking-[0.06em] text-[#c8b4cb] uppercase">
+                      {t.storyPage.visualPlaceholderTag}
                     </span>
-                    <p className="mt-1 font-mono text-[12px] text-[#918d8d]">
+                    <p className="mt-1 text-[13px] text-[#918d8d]">
                       {chapter.visualSpec}
                     </p>
                   </div>
@@ -133,7 +130,7 @@ export default function StoryPage() {
 
                 {/* Featured Character Card from Story */}
                 {featuredCard ? (
-                  <div className="lg:col-span-4 flex flex-col items-center justify-center rounded-[8px] border border-[#272626] bg-[#141716] p-5">
+                  <div className="lg:col-span-4 flex flex-col items-center justify-center rounded-[12px] border border-[#272626] bg-[#141716] p-5">
                     <Image
                       src={featuredCard.svgPath}
                       alt={featuredCard.name}
@@ -142,8 +139,8 @@ export default function StoryPage() {
                       unoptimized
                       className="w-full max-w-[220px] aspect-[630/880] object-contain"
                     />
-                    <span className="mt-3 font-mono text-[11px] tracking-[0.025em] text-[#918d8d]">
-                      {`${featuredCard.code} // ${featuredCard.name.toUpperCase()}`}
+                    <span className="mt-3 text-[12px] font-medium text-[#918d8d]">
+                      {`${featuredCard.code} • ${featuredCard.name}`}
                     </span>
                   </div>
                 ) : null}
