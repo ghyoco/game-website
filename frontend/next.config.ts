@@ -12,6 +12,18 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async headers() {
+    return [
+      {
+        source: "/game/Build/:path*.wasm",
+        headers: [{ key: "Content-Type", value: "application/wasm" }],
+      },
+      {
+        source: "/game/Build/:path*.br",
+        headers: [{ key: "Content-Encoding", value: "br" }],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

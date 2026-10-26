@@ -2,10 +2,16 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLanguage } from "./LanguageContext";
 
 export function Footer() {
+  const pathname = usePathname();
   const { t } = useLanguage();
+
+  if (pathname === "/demo") {
+    return null;
+  }
 
   return (
     <footer className="mt-24 border-t border-[#272626] bg-[#000000] py-12">
