@@ -1,7 +1,7 @@
 export type Locale = "id" | "en";
 
 // Set to false to remove the English UI toggle and lock the entire site to Bahasa Indonesia.
-export const ENABLE_LANGUAGE_TOGGLE = true;
+export const ENABLE_LANGUAGE_TOGGLE = false;
 export const DEFAULT_LOCALE: Locale = "id";
 
 export interface Dictionary {
