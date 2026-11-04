@@ -12,13 +12,7 @@ import { CardZoomDialog } from "@/components/CardZoomDialog";
 import { useLanguage } from "@/components/LanguageContext";
 
 const FACTIONS: Array<Faction | "ALL"> = ["ALL", "Babi Ngepet", "Warga"];
-const TYPES: Array<CardType | "ALL"> = [
-  "ALL",
-  "Unit",
-  "Support",
-  "Spell",
-  "Energy",
-];
+const TYPES: Array<CardType | "ALL"> = ["ALL", "Kartu Karakter", "Kartu Item"];
 
 export default function CardsPage() {
   const { t } = useLanguage();
@@ -49,19 +43,16 @@ export default function CardsPage() {
 
   return (
     <div className="mx-auto max-w-[1200px] px-6 py-10 space-y-10">
-      {/* Header + Hero Console Search Input (design.md Section 6.9) */}
+      {/* Header + Hero Console Search Input (No top badge mark) */}
       <header className="text-center space-y-4">
-        <div className="purple-pill-badge inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-[11px] font-semibold tracking-[0.06em] text-[#c8b4cb] uppercase">
-          <span>{t.cardsPage.badge}</span>
-        </div>
         <h1 className="text-display-block text-[40px] sm:text-[56px] text-[#ffffff]">
           {t.cardsPage.title}
         </h1>
-        <p className="mx-auto max-w-[600px] text-[16px] leading-[1.55] text-[#918d8d]">
+        <p className="mx-auto max-w-[620px] text-[16px] leading-[1.55] text-[#918d8d]">
           {t.cardsPage.subtitle}
         </p>
 
-        {/* Glowing Console Input Bar (16px text-base on mobile to prevent iOS auto-zoom) */}
+        {/* Glowing Console Input Bar */}
         <div className="mx-auto mt-6 max-w-[600px] flex items-center rounded-[12px] border border-[#5c478a]/60 bg-[#191919] p-1.5 shadow-[0_0_40px_rgba(119,96,162,0.24),inset_0_1px_0_0_rgba(200,180,203,0.14)] focus-within:border-[#a892c4]">
           <label htmlFor="card-search-input" className="sr-only">
             {t.cardsPage.searchPlaceholder}
@@ -142,7 +133,7 @@ export default function CardsPage() {
         </div>
       </div>
 
-      {/* Count Row with Live Region for Screen Readers */}
+      {/* Count Row with Live Region */}
       <div className="flex items-center justify-between text-[13px] font-medium text-[#918d8d] tabular-nums">
         <span role="status" aria-live="polite">
           {t.cardsPage.showingCount}: {filteredCards.length} / {CARDS_DATA.length}

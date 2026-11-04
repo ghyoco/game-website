@@ -18,12 +18,16 @@ export function Navbar() {
   ];
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-40 px-4">
+    <header
+      className={`fixed left-0 right-0 z-40 px-4 ${
+        pathname === "/demo" ? "top-2 sm:top-4" : "top-4"
+      }`}
+    >
       <div className="mx-auto flex max-w-[1080px] items-center justify-between rounded-full border border-white/[0.09] bg-[#191919]/92 py-2 pr-2 pl-6 shadow-[0_8px_28px_rgba(0,0,0,0.55),inset_0_1px_0_0_rgba(200,180,203,0.14)] backdrop-blur-md">
         <Link href="/" className="press-scale flex items-center gap-2.5 rounded-full py-1 pr-2">
           <span className="h-2.5 w-2.5 rounded-full bg-[#8870b6] shadow-[0_0_10px_#8870b6]" />
           <span className="text-[15px] font-semibold tracking-[-0.015em] text-[#ffffff]">
-            Babi Ngepet <span className="text-[#918d8d] font-normal">vs</span> Warga
+            KISATARA
           </span>
         </Link>
 
@@ -52,16 +56,13 @@ export function Navbar() {
           <Link
             href="/demo"
             aria-current={pathname === "/demo" ? "page" : undefined}
-            className={`press-scale hidden sm:inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2)] ${
+            className={`press-scale hidden sm:inline-flex items-center rounded-full px-4 py-2 text-[13px] font-medium shadow-[inset_0_1px_0_0_rgba(255,255,255,0.2)] ${
               pathname === "/demo"
                 ? "bg-[#7760a2] text-[#ffffff]"
                 : "bg-[#5c478a] text-[#ffffff] hover:bg-[#7760a2]"
             }`}
           >
             <span>{t.nav.demo}</span>
-            <span className="rounded-full bg-black/35 px-2 py-0.5 text-[10px] font-semibold tracking-[0.04em] text-[#edecee]">
-              {t.nav.tbaBadge}
-            </span>
           </Link>
           <button
             type="button"
@@ -80,7 +81,7 @@ export function Navbar() {
           className="obsidian-panel mx-auto mt-2 max-w-[1080px] rounded-[16px] p-2 md:hidden flex flex-col gap-1 shadow-[0_8px_28px_rgba(0,0,0,0.55)]"
           aria-label="Mobile Navigation"
         >
-          {[...links, { href: "/demo", label: `${t.nav.demo} (${t.nav.tbaBadge})` }].map(
+          {[...links, { href: "/demo", label: t.nav.demo }].map(
             (item) => {
               const active = pathname === item.href;
               return (

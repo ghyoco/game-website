@@ -186,7 +186,7 @@ export function CardZoomDialog({
                     {t.cardsPage.hpLabel}
                   </span>
                   <span className="mt-1 block text-[16px] font-semibold text-[#ffffff] tabular-nums">
-                    {card.hp !== undefined ? card.hp : "—"}
+                    {card.hp !== undefined ? `${card.hp} HP` : "—"}
                   </span>
                 </div>
                 <div className="rounded-[10px] border border-[#272626] bg-[#141716] p-3">
@@ -194,12 +194,12 @@ export function CardZoomDialog({
                     {t.cardsPage.dmgLabel}
                   </span>
                   <span className="mt-1 block text-[16px] font-semibold text-[#c8b4cb] tabular-nums">
-                    {card.damage !== undefined ? `${card.damage} DMG` : "Pasif"}
+                    {card.damage !== undefined ? `${card.damage} DMG` : card.passiveName ? "Pasif" : "Item"}
                   </span>
                 </div>
                 <div className="rounded-[10px] border border-[#272626] bg-[#141716] p-3">
                   <span className="block text-[11px] font-medium text-[#918d8d]">
-                    Elemen
+                    {t.cardsPage.wujudLabel}
                   </span>
                   <div className="mt-1 flex items-center gap-1.5">
                     <Image
@@ -211,21 +211,34 @@ export function CardZoomDialog({
                       className="h-4 w-4 object-contain"
                     />
                     <span className="text-[14px] font-medium text-[#edecee]">
-                      {card.faction === "Babi Ngepet" ? "Dark" : "Fire"}
+                      {card.wujud ?? "Item"}
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Effect Block */}
-              <div className="rounded-[10px] border border-[#33284d] bg-[#191919] p-4 shadow-[inset_0_1px_0_0_rgba(168,146,196,0.14)]">
-                <span className="text-[12px] font-semibold text-[#c8b4cb]">
-                  {t.cardsPage.effectLabel}
-                </span>
-                <p className="mt-1.5 text-[14px] leading-[1.55] text-[#edecee]">
-                  {card.effect[locale]}
-                </p>
-              </div>
+              {card.passiveName && card.passiveDesc ? (
+                <div className="rounded-[10px] border border-[#33284d] bg-[#141716] p-4">
+                  <span className="text-[12px] font-semibold text-[#e8dda8]">
+                    {t.cardsPage.passiveLabel}: {card.passiveName}
+                  </span>
+                  <p className="mt-1 text-[14px] leading-[1.55] text-[#edecee]">
+                    {card.passiveDesc[locale]}
+                  </p>
+                </div>
+              ) : null}
+
+              {/* Effect Block (shown for cards with an attack skill or Item effect) */}
+              {!card.passiveName || card.skillName ? (
+                <div className="rounded-[10px] border border-[#33284d] bg-[#191919] p-4 shadow-[inset_0_1px_0_0_rgba(168,146,196,0.14)]">
+                  <span className="text-[12px] font-semibold text-[#c8b4cb]">
+                    {card.skillName ? `${t.cardsPage.skillLabel}: ${card.skillName}` : t.cardsPage.effectLabel}
+                  </span>
+                  <p className="mt-1.5 text-[14px] leading-[1.55] text-[#edecee]">
+                    {card.effect[locale]}
+                  </p>
+                </div>
+              ) : null}
 
               {/* Lore Block */}
               <div className="rounded-[10px] border border-[#272626] bg-[#141716] p-4">

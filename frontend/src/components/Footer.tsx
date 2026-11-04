@@ -19,8 +19,8 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-[#8870b6]" />
-            <p className="text-[15px] font-medium text-[#ffffff]">
-              Babi Ngepet vs Warga
+            <p className="text-[15px] font-semibold text-[#ffffff]">
+              KISATARA
             </p>
           </div>
           <p className="mt-1.5 text-[13px] text-[#918d8d]">
@@ -45,7 +45,7 @@ export function Footer() {
             {t.nav.guide}
           </Link>
           <Link href="/demo" className="hover:text-[#a892c4] transition-colors">
-            {t.nav.demo} ({t.nav.tbaBadge})
+            {t.nav.demo}
           </Link>
         </div>
       </div>

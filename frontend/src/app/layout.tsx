@@ -13,9 +13,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Babi Ngepet vs Warga — Tactical Folklore Card Game",
+  title: "KISATARA — Game Kartu Babi Ngepet",
   description:
-    "Website resmi permainan kartu taktis Babi Ngepet vs Warga. Jelajahi daftar kartu, cerita Desa, panduan bermain, dan pratinjau meja demo.",
+    "KISATARA adalah game kartu dua pemain yang berdasarkan legenda Babi Ngepet. Jelajahi daftar kartu, cerita Babi Ngepet, buku aturan KISATARA, dan meja demo.",
 };
 
 export default function RootLayout({
