@@ -136,7 +136,7 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
       ],
       purposeHeading: "Untuk Apa KISATARA Dibuat?",
       purposeSubheading:
-        "Menghidupkan legenda Babi Ngepet ke dalam pertarungan kartu dua pemain yang taktis.",
+        "KISATARA dibuat untuk mengadaptasi cerita rakyat seperti Babi Ngepet untuk mengedukasi remaja mengenai bahaya perilaku ingin cepat kaya.",
       purposeCards: [
         {
           title: "Adaptasi Legenda Pak Karta & Warga Desa",

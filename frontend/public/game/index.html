@@ -1,177 +1,260 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Unity WebGL Player | tcg battle</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
-  <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+  <title>Unity WebGL Player | tcg battle</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0b0714;
+    }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #f2e9d8;
+    }
+
+    /* Full-browser shell. The game itself always lives in a 16:9 box. */
+    #game-shell {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      background: #0b0714;
+    }
+
+    #game-area {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #unity-container {
+      position: relative;
+      width: min(100%, calc((100vh - 46px) * 16 / 9));
+      height: min(calc(100vh - 46px), calc(100vw * 9 / 16));
+      aspect-ratio: 16 / 9;
+      background: #2a2340;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.28), 0 18px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    #unity-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #2a2340;
+    }
+
+    #toolbar {
+      flex: 0 0 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 16px;
+      background: #151021;
+      border-top: 1px solid rgba(212, 175, 55, 0.35);
+    }
+
+    #toolbar-title {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #cdbb9a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #game-fullscreen {
+      appearance: none;
+      border: 1px solid rgba(212, 175, 55, 0.8);
+      background: linear-gradient(#3a2f4c, #241c32);
+      color: #f5df9b;
+      font: 600 13px/1 "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0.06em;
+      padding: 9px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    #game-fullscreen:hover {
+      background: linear-gradient(#4b3d63, #2f2542);
+    }
+
+    #game-fullscreen:focus-visible {
+      outline: 2px solid #f5df9b;
+      outline-offset: 2px;
+    }
+
+    #unity-loading-bar {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      width: min(320px, 70%);
+      padding: 18px 20px;
+      background: rgba(20, 14, 30, 0.94);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    #unity-loading-bar::before {
+      content: "LOADING";
+      display: block;
+      margin-bottom: 12px;
+      font: 600 12px/1 "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0.22em;
+      color: #f5df9b;
+    }
+
+    #unity-progress-bar-empty {
+      width: 100%;
+      height: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+    }
+
+    #unity-progress-bar-full {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #b8862d, #f5df9b);
+    }
+
+    #unity-warning {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 5;
+      display: none;
+    }
+
+    #unity-warning div {
+      padding: 10px 14px;
+      font-size: 14px;
+      color: #1a1426;
+      background: #f5df9b;
+    }
+  </style>
+</head>
+<body>
+  <div id="game-shell">
+    <div id="game-area">
+      <div id="unity-container">
+        <canvas id="unity-canvas" width=1920 height=1080 tabindex="-1"></canvas>
+        <div id="unity-loading-bar">
+          <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+          </div>
         </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">tcg battle</div>
+        <div id="unity-warning"> </div>
       </div>
     </div>
-    <script>
+    <div id="toolbar">
+      <span id="toolbar-title">tcg battle</span>
+      <button id="game-fullscreen" type="button" title="Toggle fullscreen">Fullscreen</button>
+    </div>
+  </div>
+  <script>
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBar = document.querySelector("#unity-loading-bar");
+    var progressBarFull = document.querySelector("#unity-progress-bar-full");
+    var warningBanner = document.querySelector("#unity-warning");
+    var fullscreenButton = document.querySelector("#game-fullscreen");
+    var gameShell = document.querySelector("#game-shell");
 
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var loadingBar = document.querySelector("#unity-loading-bar");
-      var progressBarFull = document.querySelector("#unity-progress-bar-full");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-      var warningBanner = document.querySelector("#unity-warning");
-
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
-      function unityShowBanner(msg, type) {
-        function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
+    // Shows a temporary message banner/ribbon for a few seconds, or
+    // a permanent error message on top of the canvas if type=='error'.
+    function unityShowBanner(msg, type) {
+      function updateBannerVisibility() {
+        warningBanner.style.display = warningBanner.children.length ? "block" : "none";
       }
-
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/New folder.loader.js";
-      var config = {
-        dataUrl: buildUrl + "/New folder.data",
-        frameworkUrl: buildUrl + "/New folder.framework.js",
-        codeUrl: buildUrl + "/New folder.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "tcg battle",
-        productVersion: "1.0",
-        showBanner: unityShowBanner,
-      };
-
-      // By default, Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
-
-      // If you would like all file writes inside Unity Application.persistentDataPath
-      // directory to automatically persist so that the contents are remembered when
-      // the user revisits the site the next time, uncomment the following line:
-      // config.autoSyncPersistentDataPath = true;
-      // This autosyncing is currently not the default behavior to avoid regressing
-      // existing user projects that might rely on the earlier manual
-      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
-      // expected to change.
-
-      function applyLandscapeLayout() {
-        var vw = window.innerWidth || document.documentElement.clientWidth || 960;
-        var vh = window.innerHeight || document.documentElement.clientHeight || 600;
-        var isPortrait = vh > vw;
-        window.__unityRotated90 = isPortrait;
-
-        var availW = isPortrait ? vh : vw;
-        var availH = isPortrait ? vw : vh;
-
-        // BattleUI.cs uses a 1920x1080 height-matched CanvasScaler (matchWidthOrHeight = 1).
-        // Enforce a minimum 16:9.5 (1.684) landscape aspect ratio so the board never zooms in or clips horizontally.
-        var minAspect = 1.684;
-        var targetW = availW;
-        var targetH = availH;
-        if (targetW / targetH < minAspect) {
-          targetH = Math.max(1, Math.floor(targetW / minAspect));
-        }
-
-        container.style.width = targetW + "px";
-        container.style.height = targetH + "px";
-        container.style.left = "50%";
-        container.style.top = "50%";
-        container.style.transform = isPortrait
-          ? "translate(-50%, -50%) rotate(90deg)"
-          : "translate(-50%, -50%)";
-
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-
-        if (!window.__unityInstanceReady) {
-          var dpr = window.devicePixelRatio || 1;
-          canvas.width = Math.round(targetW * dpr);
-          canvas.height = Math.round(targetH * dpr);
-        }
+      var div = document.createElement("div");
+      div.innerHTML = msg;
+      warningBanner.appendChild(div);
+      if (type == "error") div.style = "background: red; padding: 10px;";
+      else {
+        if (type == "warning") div.style = "background: yellow; padding: 10px;";
+        setTimeout(function () {
+          warningBanner.removeChild(div);
+          updateBannerVisibility();
+        }, 5000);
       }
+      updateBannerVisibility();
+    }
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-        canvas.className = "unity-mobile";
-      }
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/WebGL.loader.js";
+    var config = {
+      dataUrl: buildUrl + "/WebGL.data.unityweb",
+      frameworkUrl: buildUrl + "/WebGL.framework.js.unityweb",
+      codeUrl: buildUrl + "/WebGL.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "tcg battle",
+      productVersion: "1.0",
+      showBanner: unityShowBanner,
+    };
 
-      applyLandscapeLayout();
-      window.addEventListener("resize", applyLandscapeLayout);
-      window.addEventListener("orientationchange", function () {
-        setTimeout(applyLandscapeLayout, 100);
+    // Unity keeps the WebGL render target matched to the DOM canvas size
+    // (scaled by devicePixelRatio). The CSS above keeps that DOM size 16:9.
+    // config.matchWebGLToCanvasSize = false;
+
+    loadingBar.style.display = "block";
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = function () {
+      createUnityInstance(canvas, config, function (progress) {
+        progressBarFull.style.width = 100 * progress + "%";
+      }).then(function (unityInstance) {
+        loadingBar.style.display = "none";
+      }).catch(function (message) {
+        alert(message);
       });
+    };
 
-      if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock("landscape").catch(function () {});
+    document.body.appendChild(script);
+
+    function isFullscreen() {
+      return document.fullscreenElement || document.webkitFullscreenElement;
+    }
+
+    function updateFullscreenButton() {
+      fullscreenButton.textContent = isFullscreen() ? "Exit Fullscreen" : "Fullscreen";
+    }
+
+    function toggleFullscreen() {
+      if (isFullscreen()) {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        return;
       }
+      if (gameShell.requestFullscreen) gameShell.requestFullscreen();
+      else if (gameShell.webkitRequestFullscreen) gameShell.webkitRequestFullscreen();
+    }
 
-      loadingBar.style.display = "block";
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        applyLandscapeLayout();
-        createUnityInstance(canvas, config, (progress) => {
-          progressBarFull.style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
-                window.__unityInstanceReady = true;
-                loadingBar.style.display = "none";
-                applyLandscapeLayout();
-                fullscreenButton.onclick = () => {
-                  var docEl = document.documentElement;
-                  if (!document.fullscreenElement && docEl.requestFullscreen) {
-                    docEl.requestFullscreen().then(function () {
-                      if (screen.orientation && screen.orientation.lock) {
-                        screen.orientation.lock("landscape").catch(function () {});
-                      }
-                    }).catch(function () {
-                      unityInstance.SetFullscreen(1);
-                    });
-                  } else if (document.fullscreenElement && document.exitFullscreen) {
-                    document.exitFullscreen().catch(function () {});
-                  } else {
-                    unityInstance.SetFullscreen(1);
-                  }
-                };
-              }).catch((message) => {
-                alert(message);
-              });
-            };
-
-      document.body.appendChild(script);
-
-    </script>
-  </body>
+    fullscreenButton.addEventListener("click", toggleFullscreen);
+    document.addEventListener("fullscreenchange", updateFullscreenButton);
+    document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+    updateFullscreenButton();
+  </script>
+</body>
 </html>
