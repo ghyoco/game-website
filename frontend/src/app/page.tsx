@@ -86,10 +86,23 @@ export default function LandingPage() {
     <div className="mx-auto max-w-[1200px] px-6">
       {/* 1. Hero Block */}
       <section className="pt-8 pb-20 text-center">
-        <h1 className="enter-stagger-1 mx-auto max-w-[920px] text-display-block text-[44px] sm:text-[64px] lg:text-[76px]">
-          <span className="block text-[#ffffff]">{t.landing.titleLine1}</span>
-          <span className="hero-purple-gradient block">{t.landing.titleLine2}</span>
-        </h1>
+        <div className="enter-stagger-1 mx-auto flex flex-col items-center justify-center">
+          <Image
+            src="/logo.svg"
+            alt="KISATARA Logo"
+            width={420}
+            height={156}
+            priority
+            unoptimized
+            className="h-20 sm:h-28 lg:h-32 w-auto object-contain drop-shadow-[0_12px_36px_rgba(136,112,182,0.35)]"
+          />
+          <h1 className="sr-only">
+            KISATARA — Game Kartu Babi Ngepet
+          </h1>
+          <p className="hero-purple-gradient mt-4 text-heading-block text-[22px] sm:text-[30px] lg:text-[34px]">
+            {t.landing.titleLine2}
+          </p>
+        </div>
 
         <p className="enter-stagger-2 mx-auto mt-6 max-w-[600px] text-[16px] sm:text-[18px] leading-[1.6] text-[#918d8d]">
           {t.landing.lead}

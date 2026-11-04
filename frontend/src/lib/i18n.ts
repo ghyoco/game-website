@@ -153,7 +153,7 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
       ],
     },
     cardsPage: {
-      title: "Daftar Kartu KISATARA",
+      title: "Daftar Kartu",
       subtitle:
         "Telusuri 10 kartu unik KISATARA (Kartu Karakter & Kartu Item dari Sisi Babi Ngepet dan Sisi Warga). Arahkan kursor untuk efek pop-up dan klik kartu untuk melihat detail ukuran penuh.",
       searchPlaceholder: "Cari nama kartu (mis. Babi Ngepet, Mbok Sumi, Warga, Kucing)…",
@@ -272,7 +272,7 @@ export const DICTIONARY: Record<Locale, Dictionary> = {
       ],
     },
     cardsPage: {
-      title: "KISATARA Card List",
+      title: "Card List",
       subtitle:
         "Browse all 10 unique KISATARA cards (Character Cards & Item Cards from the Babi Ngepet and Warga sides). Hover for a pop-up effect and click any card to inspect full details.",
       searchPlaceholder: "Search by card name (e.g. Babi Ngepet, Mbok Sumi, Warga, Kucing)…",

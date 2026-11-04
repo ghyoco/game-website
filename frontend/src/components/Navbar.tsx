@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { LanguageToggle, useLanguage } from "./LanguageContext";
 
@@ -23,12 +24,17 @@ export function Navbar() {
         pathname === "/demo" ? "top-2 sm:top-4" : "top-4"
       }`}
     >
-      <div className="mx-auto flex max-w-[1080px] items-center justify-between rounded-full border border-white/[0.09] bg-[#191919]/92 py-2 pr-2 pl-6 shadow-[0_8px_28px_rgba(0,0,0,0.55),inset_0_1px_0_0_rgba(200,180,203,0.14)] backdrop-blur-md">
-        <Link href="/" className="press-scale flex items-center gap-2.5 rounded-full py-1 pr-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#8870b6] shadow-[0_0_10px_#8870b6]" />
-          <span className="text-[15px] font-semibold tracking-[-0.015em] text-[#ffffff]">
-            KISATARA
-          </span>
+      <div className="mx-auto flex max-w-[1080px] items-center justify-between rounded-full border border-white/[0.09] bg-[#191919]/92 py-2 pr-2 pl-5 shadow-[0_8px_28px_rgba(0,0,0,0.55),inset_0_1px_0_0_rgba(200,180,203,0.14)] backdrop-blur-md">
+        <Link href="/" className="press-scale flex items-center gap-2 rounded-full py-0.5 pr-2">
+          <Image
+            src="/logo.svg"
+            alt="KISATARA Logo"
+            width={124}
+            height={46}
+            priority
+            unoptimized
+            className="h-8 w-auto object-contain"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "./LanguageContext";
 
@@ -17,13 +18,17 @@ export function Footer() {
     <footer className="mt-24 border-t border-[#272626] bg-[#000000] py-12">
       <div className="mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-6 px-6 sm:flex-row sm:items-center">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-[#8870b6]" />
-            <p className="text-[15px] font-semibold text-[#ffffff]">
-              KISATARA
-            </p>
-          </div>
-          <p className="mt-1.5 text-[13px] text-[#918d8d]">
+          <Link href="/" className="press-scale inline-block">
+            <Image
+              src="/logo.svg"
+              alt="KISATARA Logo"
+              width={130}
+              height={48}
+              unoptimized
+              className="h-8 w-auto object-contain"
+            />
+          </Link>
+          <p className="mt-2 text-[13px] text-[#918d8d]">
             {t.footer.projectNote}
           </p>
           <p className="mt-1 text-[12px] text-[#58595b]">
